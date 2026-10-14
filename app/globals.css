@@ -167,3 +167,129 @@ html,body{max-width:100%;overflow-x:hidden}
   .flowMiniCanvas .nodeFilter,.flowMiniCanvas .nodeLoose,.flowHeroCanvas .flowLg2,.flowHeroCanvas .flowLg4{right:4%}
   .flowMiniCanvas .nodeTrigger,.flowMiniCanvas .nodeAction,.flowHeroCanvas .flowLg1,.flowHeroCanvas .flowLg3,.flowHeroCanvas .flowLgLoose{left:4%}
 }
+
+
+/* Portal v0.7 — mobile clarity: lighter surface + readable Flow */
+@media(max-width:620px){
+  :root{
+    --bg:#0d121a;
+    --panel:#151c27;
+    --panel2:#1a2330;
+    --line:rgba(255,255,255,.13);
+    --muted:#aab4c2;
+  }
+
+  body{
+    background:
+      radial-gradient(circle at 82% 4%,rgba(86,145,255,.18),transparent 30%),
+      radial-gradient(circle at 8% 34%,rgba(157,140,255,.12),transparent 30%),
+      linear-gradient(180deg,#0f1520 0%,#0c1119 55%,#101722 100%);
+  }
+
+  .ambientBlobA,.ambientBlobB,.ambientBlobC{opacity:.52}
+  .siteHeader{background:rgba(13,18,26,.86)}
+  .moduleCard,.flowFeature,.sequenceCard,.downloadCard,.docCard,.shortcutCard,.docsManual,.flowStep{
+    background:linear-gradient(155deg,rgba(255,255,255,.07),rgba(255,255,255,.025));
+    border-color:rgba(255,255,255,.12);
+  }
+
+  /* No mobile: o Flow vira uma sequência vertical legível, sem blocos flutuantes. */
+  .flowMiniCanvas,
+  .flowHeroCanvas{
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+    min-height:0!important;
+    height:auto!important;
+    padding:22px;
+    overflow:visible;
+    transform:none!important;
+    background:
+      radial-gradient(circle at 86% 5%,rgba(101,230,188,.10),transparent 30%),
+      linear-gradient(180deg,rgba(23,31,43,.96),rgba(16,23,33,.96));
+  }
+
+  .flowMiniCanvas .flowWireSvg,
+  .flowHeroCanvas .flowWireSvg{display:none!important}
+
+  .flowMiniCanvas .flowNode,
+  .flowHeroCanvas .flowNode,
+  .flowHeroCanvas .flowNodeLg{
+    position:relative!important;
+    inset:auto!important;
+    left:auto!important;
+    right:auto!important;
+    top:auto!important;
+    bottom:auto!important;
+    width:100%!important;
+    min-height:86px;
+    padding:16px 17px!important;
+    border-radius:18px;
+    transform:none!important;
+    opacity:1;
+    background:linear-gradient(160deg,rgba(31,40,54,.98),rgba(20,27,38,.98));
+    border-color:rgba(255,255,255,.14);
+    box-shadow:0 12px 30px rgba(0,0,0,.18),inset 0 1px rgba(255,255,255,.055);
+  }
+
+  .flowMiniCanvas .flowNode:not(.nodeLoose):not(.nodeAction)::after,
+  .flowHeroCanvas .flowNode:not(.flowLgLoose):not(.flowLg4)::after{
+    content:"↓";
+    position:absolute;
+    left:50%;
+    bottom:-24px;
+    transform:translateX(-50%);
+    color:rgba(101,230,188,.9);
+    font-size:17px;
+    line-height:1;
+    text-shadow:0 0 12px rgba(101,230,188,.38);
+  }
+
+  .flowMiniCanvas .nodeLoose,
+  .flowHeroCanvas .flowLgLoose{
+    margin-top:8px;
+    opacity:.72;
+    border-style:dashed;
+    border-color:rgba(255,255,255,.16);
+    background:rgba(255,255,255,.035);
+  }
+
+  .flowMiniCanvas .nodeLoose::before,
+  .flowHeroCanvas .flowLgLoose::before{
+    content:"FORA DO FLUXO";
+    display:block;
+    margin-bottom:10px;
+    color:#7f8b9d;
+    font-size:9px;
+    font-weight:850;
+    letter-spacing:.13em;
+  }
+
+  .flowMiniCanvas .nodeLoose>span,
+  .flowHeroCanvas .flowLgLoose>span{display:none}
+
+  .flowMiniCanvas:after,
+  .flowHeroCanvas:after{opacity:.18}
+
+  .flowShowcaseGrid{gap:34px}
+  .flowHero{padding-bottom:54px}
+  .flowHeroCanvas{margin-top:30px}
+
+  .flowFeatureGrid{gap:10px}
+  .flowFeature{padding:20px}
+  .sequenceTrack{gap:10px}
+  .sequenceCard{padding:20px}
+
+  .creatorPanel,.supportPanel,.betaPanel{
+    background:
+      radial-gradient(circle at 0 0,rgba(115,207,255,.08),transparent 38%),
+      linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.025));
+  }
+}
+
+@media(max-width:390px){
+  .flowMiniCanvas,.flowHeroCanvas{padding:18px;gap:26px}
+  .flowMiniCanvas .flowNode,
+  .flowHeroCanvas .flowNode,
+  .flowHeroCanvas .flowNodeLg{min-height:82px;padding:15px!important}
+}
