@@ -58,3 +58,112 @@
 @media(max-width:1080px){.navSupport span{display:none}.navSupport{padding:9px}.navWrap{gap:18px}}
 @media(max-width:800px){.supportPanel{grid-template-columns:auto 1fr}.supportButton{grid-column:1/-1;justify-content:center}}
 @media(max-width:560px){.supportPanel{grid-template-columns:1fr;padding:28px}.supportBadge{width:58px;height:58px;border-radius:18px}.supportButton{width:100%}.creatorSocialProminent{width:100%}}
+
+
+/* Portal v0.6 — mobile responsive polish */
+html,body{max-width:100%;overflow-x:hidden}
+@media(max-width:620px){
+  body{background:radial-gradient(circle at 78% 0%,rgba(77,133,255,.11),transparent 26%),var(--bg)}
+  .shell,.navWrap,.footer{width:min(100% - 28px,1180px)}
+  .siteHeader{background:rgba(8,11,16,.88);backdrop-filter:blur(18px)}
+  .navWrap{height:62px;gap:10px}
+  .brand{gap:8px;font-size:14px}
+  .brandLogoWrap{width:32px;height:32px;border-radius:10px}
+  .navSupport{margin-left:auto;padding:8px;border-radius:11px}
+  .navSupport .instagramIcon{width:18px;height:18px}
+  .navDownload{padding:9px 11px;border-radius:11px;font-size:11px;white-space:nowrap}
+
+  .hero{padding-block:42px 54px;gap:26px}
+  .hero h1{font-size:clamp(42px,13vw,50px);line-height:.96;margin:20px 0 20px}
+  .heroCopy>p{font-size:15px;line-height:1.6}
+  .heroMeta{gap:12px;flex-wrap:wrap;font-size:10px}
+  .heroVisual{min-height:275px}
+  .glassWindow{width:100%;padding:10px 10px 13px;border-radius:22px;transform:none!important}
+  .windowBar{height:34px}
+  .miniGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .miniModule{min-height:82px;padding:11px;border-radius:15px}
+  .miniModule:last-child{grid-column:auto}
+  .miniModule .moduleIcon{width:34px;height:34px;border-radius:11px}
+  .miniModule .moduleIcon svg{width:19px;height:19px}
+
+  .section{padding-block:64px}
+  .sectionHead{margin-bottom:26px}
+  .sectionHead h2,.workflowCopy h2,.betaPanel h2,.pageTop h1{font-size:clamp(32px,10vw,42px)}
+  .sectionHead>p{font-size:13px}
+  .moduleGrid{gap:10px}
+  .moduleCard,.moduleCard-1,.moduleCard-2,.moduleCard-7{grid-column:span 12;min-height:0;padding:20px;border-radius:20px}
+  .moduleCard h3{margin:16px 0 7px;font-size:19px}
+  .moduleCard p{font-size:13px}
+  .moduleMeta{margin-top:18px}
+
+  .flowShowcaseGrid{gap:30px}
+  .flowPitch h2{font-size:clamp(34px,10vw,44px)}
+  .flowPitch p{font-size:14px}
+  .flowMiniCanvas{min-height:500px;border-radius:24px}
+  .flowMiniCanvas .flowWireSvg{display:none}
+  .flowMiniCanvas .flowNode{width:150px;padding:13px 14px}
+  .flowMiniCanvas .nodeTrigger{left:6%;top:7%}
+  .flowMiniCanvas .nodeFilter{left:auto;right:6%;top:29%}
+  .flowMiniCanvas .nodeAction{left:6%;right:auto;top:52%}
+  .flowMiniCanvas .nodeLoose{left:auto;right:6%;bottom:7%}
+
+  .workflowSection{gap:28px}
+  .workflowLine{grid-template-columns:1fr 1fr;gap:8px}
+  .flowStep{min-height:96px;padding:14px}
+  .flowStep span{margin-bottom:22px}
+
+  .creatorPanel,.supportPanel{grid-template-columns:1fr!important;padding:24px!important;gap:18px;border-radius:24px}
+  .creatorMark,.supportBadge{width:56px;height:56px;border-radius:18px}
+  .creatorButton,.supportButton{grid-column:auto;width:100%!important}
+  .creatorCopy h2,.supportCopy h2{font-size:30px}
+  .creatorSocialProminent{width:100%}
+
+  .betaPanel{padding:24px;border-radius:24px;margin-bottom:72px}
+  .betaPanel h2{font-size:34px}
+  .betaPanel p{font-size:13px}
+  .betaActions{width:100%}
+
+  .footer{padding:30px 0 42px;gap:24px}
+  .footerLinks{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px;width:100%}
+
+  .pageTop{padding-top:58px;padding-bottom:42px}
+  .pageTop h1{font-size:clamp(38px,12vw,48px)}
+  .pageTop p{font-size:15px}
+  .downloadGrid{padding-top:45px}
+  .downloadCard{padding:24px;border-radius:22px;min-height:0}
+  .downloadDetails{grid-template-columns:1fr}
+  .checksumCard{padding:20px;border-radius:18px}
+  .docsGrid{padding-block:45px}
+  .docCard{padding:18px}
+  .shortcutCard,.docsManual{padding:22px}
+
+  .flowHero{display:block;min-height:0;padding-block:48px 64px}
+  .flowHeroCopy h1{font-size:clamp(42px,12vw,50px);line-height:.97;margin:14px 0 20px}
+  .flowHeroCopy>p{font-size:15px}
+  .flowHeroCanvas{margin-top:34px;min-height:650px;border-radius:24px;transform:none!important}
+  .flowHeroCanvas .flowWireSvg{display:none}
+  .flowHeroCanvas .flowNodeLg{width:154px;padding:14px 15px;border-radius:17px}
+  .flowHeroCanvas .flowLg1{left:6%;top:7%}
+  .flowHeroCanvas .flowLg2{left:auto;right:6%;top:25%}
+  .flowHeroCanvas .flowLg3{left:6%;right:auto;top:45%}
+  .flowHeroCanvas .flowLg4{left:auto;right:6%;bottom:18%}
+  .flowHeroCanvas .flowLgLoose{left:6%;bottom:4%;transform:none}
+  .flowFeatureGrid,.sequenceTrack{grid-template-columns:1fr}
+  .flowFeature{min-height:0;padding:21px}
+  .flowFeature h3{margin-top:30px}
+  .sequenceCard{min-height:0}
+  .sequenceCard strong{margin-top:34px}
+  .flowCta{padding:30px 20px;border-radius:24px;margin-bottom:70px}
+  .flowCta h2{font-size:36px}
+}
+
+@media(max-width:390px){
+  .brand>span:last-child{display:none}
+  .navWrap{gap:8px}
+  .navDownload{padding:8px 10px;font-size:10px}
+  .hero h1{font-size:40px}
+  .flowHeroCopy h1{font-size:40px}
+  .flowMiniCanvas .flowNode,.flowHeroCanvas .flowNodeLg{width:142px}
+  .flowMiniCanvas .nodeFilter,.flowMiniCanvas .nodeLoose,.flowHeroCanvas .flowLg2,.flowHeroCanvas .flowLg4{right:4%}
+  .flowMiniCanvas .nodeTrigger,.flowMiniCanvas .nodeAction,.flowHeroCanvas .flowLg1,.flowHeroCanvas .flowLg3,.flowHeroCanvas .flowLgLoose{left:4%}
+}
