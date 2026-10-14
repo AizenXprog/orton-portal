@@ -1,0 +1,8 @@
+{
+  "version": "6.0.0-beta.1",
+  "label": "Beta 1 · Hotfix 1",
+  "sha256": "generated-during-build",
+  "sizeBytes": 5577216,
+  "requiresPreinstalledDotnet": false,
+  "requiresInternetDuringInstall": true
+}
