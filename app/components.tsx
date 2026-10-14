@@ -19,6 +19,16 @@ export function Logo() {
   );
 }
 
+export function InstagramIcon() {
+  return (
+    <svg className="instagramIcon" viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="5.2" fill="none" stroke="currentColor" strokeWidth="1.8" />
+      <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="1.8" />
+      <circle cx="17.5" cy="6.7" r="1.05" fill="currentColor" />
+    </svg>
+  );
+}
+
 export function Header() {
   return (
     <header className="siteHeader">
@@ -31,6 +41,16 @@ export function Header() {
           <Link href="/changelog">Changelog</Link>
           <Link href="/roadmap">Roadmap</Link>
         </nav>
+        <a
+          className="navSupport"
+          href="https://www.instagram.com/mnttez/"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Instagram @mnttez — dúvidas e reporte de problemas"
+        >
+          <InstagramIcon />
+          <span>Dúvidas / Reportar</span>
+        </a>
         <Link className="navDownload" href="/download">Baixar Beta</Link>
       </div>
     </header>
@@ -43,7 +63,10 @@ export function Footer() {
       <div>
         <Logo />
         <p>Desenvolvido por <strong>Vitor Monte Vaz</strong>.</p>
-        <a className="creatorSocial" href="https://www.instagram.com/mnttez/" target="_blank" rel="noreferrer">@mnttez no Instagram ↗</a>
+        <a className="creatorSocial creatorSocialProminent" href="https://www.instagram.com/mnttez/" target="_blank" rel="noreferrer">
+          <InstagramIcon />
+          <span><strong>@mnttez</strong><small>Dúvidas e reporte de problemas</small></span>
+        </a>
       </div>
       <div className="footerLinks">
         <Link href="/download">Download</Link>
