@@ -1,0 +1,89 @@
+name: Hotfix Orton Beta 1 installer
+
+on:
+  push:
+    paths:
+      - '.github/workflows/hotfix-orton-installer.yml'
+      - 'tools/OrtonInstaller-Beta1-Hotfix.ps1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch-installer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Patch embedded installer script
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, zipfile, io
+
+          exe = Path("public/downloads/Orton_Setup_6.0_Beta1.exe")
+          script_file = Path("tools/OrtonInstaller-Beta1-Hotfix.ps1")
+
+          if not exe.exists():
+              raise SystemExit(f"Installer not found: {exe}")
+          if not script_file.exists():
+              raise SystemExit(f"Hotfix script not found: {script_file}")
+
+          data = bytearray(exe.read_bytes())
+          if data[:2] != b"MZ":
+              raise SystemExit("Installer is not a Windows PE executable.")
+
+          start = data.find(b"param(")
+          png = data.find(b"\x89PNG\r\n\x1a\n", start)
+          if start < 0 or png < 0 or png <= start:
+              raise SystemExit("Could not locate the embedded PowerShell region.")
+
+          script = script_file.read_bytes()
+          region_size = png - start
+          if len(script) >= region_size:
+              raise SystemExit(f"Hotfix script too large: {len(script)} >= {region_size}")
+
+          old_zip_start = data.find(b"PK\x03\x04", png)
+          old_zip_end_sig = data.find(b"PK\x05\x06", old_zip_start)
+          if old_zip_start < 0 or old_zip_end_sig < 0:
+              raise SystemExit("Embedded source payload ZIP was not found.")
+          old_zip_end = old_zip_end_sig + 22
+          old_payload = bytes(data[old_zip_start:old_zip_end])
+          with zipfile.ZipFile(io.BytesIO(old_payload)) as zf:
+              bad = zf.testzip()
+              if bad:
+                  raise SystemExit(f"Embedded payload ZIP is corrupt before patch: {bad}")
+
+          data[start:png] = script + b" " * (region_size - len(script) - 1) + b"\0"
+          exe.write_bytes(data)
+
+          check = exe.read_bytes()
+          if b"dotnet-install.ps1" not in check[start:png]:
+              raise SystemExit("Hotfix marker not present after patch.")
+          if b"6.0.0-beta.1" not in check[start:png]:
+              raise SystemExit("Beta version marker not present after patch.")
+
+          new_payload = check[old_zip_start:old_zip_end]
+          if hashlib.sha256(old_payload).digest() != hashlib.sha256(new_payload).digest():
+              raise SystemExit("Embedded Orton source payload changed unexpectedly.")
+
+          print("Installer patched successfully.")
+          print("SHA256:", hashlib.sha256(check).hexdigest())
+          print("Size:", len(check))
+          PY
+
+      - name: Commit corrected installer
+        shell: bash
+        run: |
+          if git diff --quiet -- public/downloads/Orton_Setup_6.0_Beta1.exe; then
+            echo "Installer already patched."
+            exit 0
+          fi
+          git config user.name "Orton Release Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add public/downloads/Orton_Setup_6.0_Beta1.exe
+          git commit -m "Fix Beta 1 installer .NET bootstrap"
+          git push
