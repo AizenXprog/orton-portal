@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Footer, Header, ModuleIcon, type IconName } from "./components";
+import { Footer, Header, InstagramIcon, ModuleIcon, type IconName } from "./components";
 
 const modules: { name: string; icon: IconName; text: string; meta: string }[] = [
   { name: "Organizador", icon: "organizer", text: "Analise, revise e organize arquivos com um fluxo controlado.", meta: "Análise · Revisão · Plano" },
@@ -99,6 +99,19 @@ export default function Home() {
             <p>O Orton é um projeto independente criado e desenvolvido por Vitor Monte Vaz.</p>
           </div>
           <a className="button secondary creatorButton" href="https://www.instagram.com/mnttez/" target="_blank" rel="noreferrer">Instagram · @mnttez ↗</a>
+        </section>
+
+        <section className="section shell supportPanel" id="support" data-reveal>
+          <div className="supportBadge"><InstagramIcon /></div>
+          <div className="supportCopy">
+            <span className="eyebrow">CONTATO DIRETO</span>
+            <h2>Dúvidas ou encontrou um problema?</h2>
+            <p>Fale diretamente comigo pelo Instagram. Use <strong>@mnttez</strong> para tirar dúvidas, enviar feedback ou reportar bugs do Orton.</p>
+          </div>
+          <a className="supportButton" href="https://www.instagram.com/mnttez/" target="_blank" rel="noreferrer">
+            <InstagramIcon />
+            <span><strong>@mnttez</strong><small>Abrir Instagram ↗</small></span>
+          </a>
         </section>
 
         <section className="section shell betaPanel" data-reveal>
