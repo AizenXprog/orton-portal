@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Footer, Header, PageTop } from "../components";
-
-const SHA256 = "f232e3681a385dcfbc49eb8e194c8e1cb28a8de14fd0e22d9119f45839ad4741";
+import installerMeta from "../installer-meta.json";
 
 export default function DownloadPage() {
   return (
@@ -10,10 +9,10 @@ export default function DownloadPage() {
       <section className="shell downloadGrid">
         <article className="downloadCard featured">
           <div className="downloadBadge">RECOMENDADO</div>
-          <h2>Orton 6 Beta 1</h2>
-          <p>Windows · instalador x64 · canal Beta</p>
+          <h2>Orton 6 Beta 1 · Hotfix 1</h2>
+          <p>Windows · instalador x64 · canal Beta · não exige .NET pré-instalado</p>
           <a className="button primary wide" href="/downloads/Orton_Setup_6.0_Beta1.exe" download>Baixar instalador</a>
-          <dl className="downloadDetails"><div><dt>Versão</dt><dd>6.0.0-beta.1</dd></div><div><dt>Canal</dt><dd>Beta</dd></div><div><dt>Status</dt><dd>Testes públicos</dd></div></dl>
+          <dl className="downloadDetails"><div><dt>Versão</dt><dd>{installerMeta.version}</dd></div><div><dt>Canal</dt><dd>Beta</dd></div><div><dt>Status</dt><dd>Hotfix 1</dd></div></dl>
         </article>
         <article className="downloadCard">
           <span className="eyebrow">DOCUMENTAÇÃO</span>
@@ -24,9 +23,9 @@ export default function DownloadPage() {
       </section>
       <section className="shell checksumCard">
         <div><span className="eyebrow">INTEGRIDADE</span><h3>SHA-256 do instalador</h3></div>
-        <code>{SHA256}</code>
+        <code>{installerMeta.sha256}</code>
       </section>
-      <section className="shell betaWarning"><strong>Importante:</strong> esta é uma versão Beta. Não é a edição final do Orton 6 e ainda pode apresentar bugs. <Link href="/changelog">Veja as notas da versão.</Link></section>
+      <section className="shell betaWarning"><strong>Importante:</strong> esta é uma versão Beta. O Hotfix 1 corrige a instalação em PCs sem .NET 10 previamente instalado. A primeira instalação precisa de internet para preparar os componentes temporários. <Link href="/changelog">Veja as notas da versão.</Link></section>
     </main><Footer/></>
   );
 }
