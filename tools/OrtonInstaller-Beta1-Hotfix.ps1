@@ -147,12 +147,12 @@ UseLayoutRounding="True" Title="Orton — Instalação">
 <Grid.ColumnDefinitions><ColumnDefinition Width="1.16*"/><ColumnDefinition Width="0.84*"/></Grid.ColumnDefinitions>
 <StackPanel Grid.Column="0" Margin="0,0,38,0">
 <TextBlock Text="Instale o Orton" FontSize="38" FontWeight="SemiBold" Foreground="#FFFFFF"/>
-<TextBlock Text="Organizador + Explorador + Scanner" FontSize="17" Foreground="#B6BDCA" Margin="0,8,0,0"/>
+<TextBlock Text="7 módulos integrados · Orton 6 Beta 1" FontSize="17" Foreground="#B6BDCA" Margin="0,8,0,0"/>
 <TextBlock Text="Uma instalação limpa, por usuário, sem exigir .NET pré-instalado. Seus dados e preferências são preservados." TextWrapping="Wrap" FontSize="13" Foreground="#8E97A8" Margin="0,18,0,0" Width="475" HorizontalAlignment="Left"/>
 <Border Background="#121620" BorderBrush="#252B37" BorderThickness="1" CornerRadius="18" Padding="20" Margin="0,28,0,0">
 <StackPanel>
 <TextBlock Text="Orton completo" FontSize="16" FontWeight="SemiBold"/>
-<TextBlock Text="Três módulos integrados e prontos para uso." Foreground="#8F99AA" FontSize="12" Margin="0,4,0,0"/>
+<TextBlock Text="Organizador, Explorer, Scanner, Studio, Command, Search e Flow." Foreground="#8F99AA" FontSize="12" Margin="0,4,0,0"/>
 </StackPanel>
 </Border>
 <Border Background="#121620" BorderBrush="#252B37" BorderThickness="1" CornerRadius="18" Padding="20" Margin="0,14,0,0">
