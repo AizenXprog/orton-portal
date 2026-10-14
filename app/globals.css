@@ -31,3 +31,30 @@
 .creatorSocial:hover{opacity:1;transform:translateX(2px)}
 @media(max-width:800px){.creatorPanel{grid-template-columns:auto 1fr}.creatorButton{grid-column:1/-1;width:100%}}
 @media(max-width:560px){.creatorPanel{grid-template-columns:1fr;padding:28px}.creatorMark{width:58px;height:58px;border-radius:18px}}
+
+
+/* Portal v0.5 — Instagram support visibility */
+.instagramIcon{width:19px;height:19px;display:block;flex:0 0 auto}
+.navSupport{display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid rgba(255,255,255,.11);border-radius:13px;background:rgba(255,255,255,.035);color:#dfe5ed;font-size:12px;font-weight:700;white-space:nowrap;transition:transform .2s ease,border-color .2s ease,background .2s ease}
+.navSupport:hover{transform:translateY(-1px);border-color:rgba(255,143,216,.35);background:rgba(255,143,216,.075)}
+.navSupport .instagramIcon{color:var(--pink)}
+.creatorSocialProminent{display:flex;align-items:center;gap:10px;width:max-content;margin-top:12px;padding:10px 12px;border:1px solid rgba(255,255,255,.10);border-radius:14px;background:rgba(255,255,255,.035);opacity:1!important}
+.creatorSocialProminent .instagramIcon{color:var(--pink);width:21px;height:21px}
+.creatorSocialProminent span{display:flex;flex-direction:column;gap:2px}
+.creatorSocialProminent strong{color:var(--text);font-size:12px}
+.creatorSocialProminent small{color:var(--muted);font-size:10px}
+.supportPanel{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:28px;margin-top:18px;margin-bottom:34px;padding:34px 38px;border:1px solid rgba(255,143,216,.18);border-radius:30px;background:radial-gradient(circle at 0 50%,rgba(255,143,216,.10),transparent 34%),linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.018));box-shadow:0 30px 70px rgba(0,0,0,.18)}
+.supportBadge{width:68px;height:68px;border-radius:22px;display:grid;place-items:center;color:var(--pink);border:1px solid rgba(255,143,216,.20);background:rgba(255,143,216,.075);box-shadow:0 0 30px rgba(255,143,216,.08),inset 0 1px rgba(255,255,255,.05)}
+.supportBadge .instagramIcon{width:31px;height:31px}
+.supportCopy h2{margin:7px 0 8px;font-size:clamp(28px,3.5vw,42px);letter-spacing:-.04em}
+.supportCopy p{margin:0;color:var(--muted);font-size:14px;line-height:1.65;max-width:690px}
+.supportCopy p strong{color:var(--text)}
+.supportButton{display:flex;align-items:center;gap:12px;padding:13px 16px;border-radius:16px;background:#f4f7fb;color:#0b0e13;font-weight:800;white-space:nowrap;transition:transform .2s ease,box-shadow .2s ease}
+.supportButton:hover{transform:translateY(-2px);box-shadow:0 15px 34px rgba(0,0,0,.22)}
+.supportButton .instagramIcon{width:22px;height:22px}
+.supportButton span{display:flex;flex-direction:column;gap:1px}
+.supportButton strong{font-size:13px}
+.supportButton small{font-size:9px;font-weight:700;opacity:.62}
+@media(max-width:1080px){.navSupport span{display:none}.navSupport{padding:9px}.navWrap{gap:18px}}
+@media(max-width:800px){.supportPanel{grid-template-columns:auto 1fr}.supportButton{grid-column:1/-1;justify-content:center}}
+@media(max-width:560px){.supportPanel{grid-template-columns:1fr;padding:28px}.supportBadge{width:58px;height:58px;border-radius:18px}.supportButton{width:100%}.creatorSocialProminent{width:100%}}
