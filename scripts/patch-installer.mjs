@@ -18,10 +18,8 @@ const png = data.indexOf(pngSig, start);
 if (start < 0 || png < 0 || png <= start) throw new Error("Região PowerShell embutida não encontrada.");
 
 const region = data.subarray(start, png);
-if (region.includes(Buffer.from("dotnet-install.ps1")) && region.includes(Buffer.from("6.0.0-beta.1"))) {
-  console.log("Installer Beta 1 já contém o hotfix de bootstrap .NET.");
-  process.exit(0);
-}
+const alreadyPatched = region.includes(Buffer.from("dotnet-install.ps1")) && region.includes(Buffer.from("6.0.0-beta.1"));
+if (alreadyPatched) console.log("Installer Beta 1 já contém o hotfix de bootstrap .NET.");
 
 const ps = fs.readFileSync(psPath);
 const regionSize = png - start;
@@ -34,9 +32,11 @@ const zipEnd = zipEndSig + 22;
 const beforeHash = crypto.createHash("sha256").update(data.subarray(zipStart, zipEnd)).digest("hex");
 
 const patched = Buffer.from(data);
-ps.copy(patched, start);
-patched.fill(0x20, start + ps.length, png - 1);
-patched[png - 1] = 0x00;
+if (!alreadyPatched) {
+  ps.copy(patched, start);
+  patched.fill(0x20, start + ps.length, png - 1);
+  patched[png - 1] = 0x00;
+}
 
 const afterRegion = patched.subarray(start, png);
 if (!afterRegion.includes(Buffer.from("dotnet-install.ps1"))) throw new Error("Marcador do bootstrap .NET ausente após o patch.");
@@ -46,5 +46,15 @@ const afterHash = crypto.createHash("sha256").update(patched.subarray(zipStart, 
 if (beforeHash !== afterHash) throw new Error("O payload do Orton foi alterado durante o patch.");
 
 fs.writeFileSync(exePath, patched);
-console.log("Hotfix do instalador Beta 1 aplicado.");
-console.log("SHA256:", crypto.createHash("sha256").update(patched).digest("hex"));
+const finalSha = crypto.createHash("sha256").update(patched).digest("hex");
+const metaPath = path.join(root, "app", "installer-meta.json");
+fs.writeFileSync(metaPath, JSON.stringify({
+  version: "6.0.0-beta.1",
+  label: "Beta 1 · Hotfix 1",
+  sha256: finalSha,
+  sizeBytes: patched.length,
+  requiresPreinstalledDotnet: false,
+  requiresInternetDuringInstall: true
+}, null, 2) + "\n");
+console.log("Hotfix do instalador Beta 1 aplicado/verificado.");
+console.log("SHA256:", finalSha);
